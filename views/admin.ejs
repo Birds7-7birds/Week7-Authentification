@@ -1,0 +1,13 @@
+<h1 class="mt-4">Admin Area</h1>
+<p class="lead mb-3">Welcome Admin</p>
+<a href="/auth/logout" class="btn btn-secondary">Logout</a>
+<h2>current sessions are: </h2>
+<ul>
+    <% theHTML.forEach(function(theHTML) { %>
+        <li>
+            <strong>session: <%= theHTML.session %></strong>
+            representing user: <%= theHTML.user %>
+        </li>
+        <a style="background-color:grey" href="http://localhost:3000/admin/p/<%= theHTML.session %>" class="btn btn-primary btn-block">revoke session?</a>
+    <% }); %>
+</ul>
