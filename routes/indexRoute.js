@@ -21,8 +21,10 @@ router.get("/dashboard", ensureAuthenticated, (req, res) => {
   
 });
 
-router.get('/admin', (req, res) => {req.sessionStore.all((err, sessions)=>{
-
+router.get('/admin', ensureAuthenticated, (req, res) => {req.sessionStore.all((err, sessions)=>{
+  if (req.user.id != 0){
+  res.redirect("/dashboard")
+  }
   let theHTML = [];
   for ( i in sessions) {
     theHTML.push({session: i, user: sessions[i].passport.user})
@@ -43,8 +45,8 @@ router.get('/admin/p/:id', (req, res) => {
   let dd = req.sessionStore.sessions
   let sid = sessionToDel.id
 
-// i have tried alot of things here but it seems it wont recognize destroy as a function. regardless of implimentation
-  dd[sid].destroy()
+  // i have tried alot of things here but it seems it wont recognize destroy as a function. regardless of implimentation
+  delete dd[sessionToDel.id]
 
 
   res.redirect('/admin')
