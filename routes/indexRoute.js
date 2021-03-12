@@ -45,8 +45,14 @@ router.get('/admin/p/:id', (req, res) => {
   let dd = req.sessionStore.sessions
   let sid = sessionToDel.id
 
+<<<<<<< HEAD
   // i have tried alot of things here but it seems it wont recognize destroy as a function. regardless of implimentation
   delete dd[sessionToDel.id]
+=======
+  // i have tried alot of things here but it seems it wont recognize destroy as a function. regardless of implimentation. i can acess cookie id or user id.
+  // i tried every destroy method i could find session destroy or store destroy. i even tried remove item
+  dd[sid].destroy()
+>>>>>>> b42f1655a0c49a9acd9e6dbc9fc422fe47b99996
 
 
   res.redirect('/admin')
